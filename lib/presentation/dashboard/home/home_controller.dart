@@ -1,3 +1,4 @@
+import 'package:mylesson/data/model/banner_response.dart';
 import 'package:mylesson/data/repository/banner_repository.dart';
 import 'package:mylesson/data/repository/course_repository.dart';
 import 'package:mylesson/data/services/firebase_auth_service.dart';
@@ -14,6 +15,7 @@ class HomeController extends GetxController {
       this.firebaseAuthService, this.courseRepository, this.bannerRepository);
 
   List<CourseData> courseList = [];
+  List<BannerData> bannerList = [];
 
   // Currently set to static
   String majorName = 'IPA';
@@ -24,6 +26,15 @@ class HomeController extends GetxController {
       List<CourseData> result =
           await courseRepository.getCourses(majorName: majorName, email: email);
       courseList = result;
+      update();
+    }
+  }
+
+  Future<void> getBanner() async {
+    String? email = firebaseAuthService.getCurrentSignedInUserEmail();
+    if (email != null) {
+      List<BannerData> result = await bannerRepository.getBanners(limit: 5);
+      bannerList = result;
       update();
     }
   }

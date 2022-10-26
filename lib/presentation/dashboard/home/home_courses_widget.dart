@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/core/values.dart';
 import 'package:mylesson/data/model/course_response.dart';
 import 'package:mylesson/routes/routes.dart';

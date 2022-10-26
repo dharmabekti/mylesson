@@ -2,17 +2,12 @@
 
 import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/core/app_colors.dart';
-import 'package:mylesson/data/model/course_response.dart';
 import 'package:mylesson/data/model/user_response.dart';
 import 'package:mylesson/presentation/auth/login/login_controller.dart';
-import 'package:mylesson/presentation/course/course_list_controller.dart';
+import 'package:mylesson/presentation/dashboard/home/banner_widget.dart';
 import 'package:mylesson/presentation/dashboard/home/home_courses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-
-import '../../../routes/routes.dart';
-import 'home_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -89,65 +84,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         const HomeCoursesWidget(),
-        // Container(
-        //   margin: EdgeInsets.all(15),
-        //   child: Column(
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Text(
-        //             'Pilih Pelajaran',
-        //             style: TextStyle(
-        //               fontSize: 16,
-        //               fontWeight: FontWeight.bold,
-        //             ),
-        //           ),
-        //           GestureDetector(
-        //             onTap: () => Get.toNamed(Routes.courseList),
-        //             child: Text(
-        //               'Lihat Semua',
-        //               style: TextStyle(
-        //                 fontSize: 10,
-        //                 color: AppColors.primary,
-        //                 fontWeight: FontWeight.bold,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //       Card(
-        //           child: Container(
-        //         padding: EdgeInsets.all(10),
-        //         child: ListTile(
-        //             leading: Image.asset(ImagesAssets.imgProfile),
-        //             title: Text("Mapel",
-        //                 style: TextStyle(
-        //                   fontSize: 12,
-        //                   fontWeight: FontWeight.bold,
-        //                 )),
-        //             subtitle: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               mainAxisAlignment: MainAxisAlignment.start,
-        //               children: [
-        //                 Text("0/50 Paket latihan soal",
-        //                     style: TextStyle(
-        //                       height: 2,
-        //                       fontSize: 12,
-        //                     )),
-        //                 SizedBox(height: 10),
-        //                 LinearPercentIndicator(
-        //                   percent: 0.1,
-        //                   backgroundColor: Colors.grey,
-        //                   progressColor: Colors.blue,
-        //                   barRadius: Radius.circular(10),
-        //                 ),
-        //               ],
-        //             )),
-        //       )),
-        //     ],
-        //   ),
-        // ),
+        const BannerWidget(),
       ],
     );
   }

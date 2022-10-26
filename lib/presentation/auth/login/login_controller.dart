@@ -15,6 +15,8 @@ class LoginController extends GetxController {
   LoginController(
       {required this.firebaseAuthService, required this.authRepository});
 
+  UserData userData = UserData();
+
   /// Steps:
   /// 1. Sign In With Google
   /// 2. Get Email from UserCredential
@@ -35,14 +37,29 @@ class LoginController extends GetxController {
     if (email != null) {
       UserData? userData = await authRepository.getUserByEmail(email: email);
       if (userData != null) {
-        // User is Registered
-        Get.offAllNamed(Routes.dashboard);
+        print(userData.iduser);
+        if (userData.iduser.toString() != "0") {
+          // User is Registered
+          Get.offAllNamed(Routes.dashboard);
+        } else {
+          // User is Signed In & Is not Registered
+          Get.offAllNamed(Routes.registerForm);
+        }
       } else {
         // User is Signed In & Is not Registered
         Get.offAllNamed(Routes.registerForm);
       }
     } else {
       Get.offAllNamed(Routes.login);
+    }
+  }
+
+  Future<void> getUser() async {
+    String? email = FirebaseAuth.instance.currentUser?.email;
+    if (email != null) {
+      UserData? result = await authRepository.getUserByEmail(email: email);
+      userData = result!;
+      update();
     }
   }
 }

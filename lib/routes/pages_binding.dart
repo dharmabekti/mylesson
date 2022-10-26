@@ -33,7 +33,7 @@ class Pages {
         binding: DashboardBinding()),
     GetPage(
         name: Routes.registerForm,
-        page: () => const RegistFormPage(),
+        page: () => RegistFormPage(),
         binding: RegistFormBinding()),
     GetPage(
         name: Routes.courseList,

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "125510589897-28ch5m1hfdr6rhccrc0n7qsb5cockgs2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mylesson.edspert",
+            "certificate_hash": "f738a88d377bebfe0647301767c054565ed20644"
+          }
+        },
+        {
           "client_id": "125510589897-7hbuacrolkc9fnkpo407lpejnu2ltj4t.apps.googleusercontent.com",
           "client_type": 3
         }

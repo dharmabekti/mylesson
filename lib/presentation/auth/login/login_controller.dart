@@ -12,8 +12,8 @@ class LoginController extends GetxController {
   final FirebaseAuthService firebaseAuthService;
   final AuthRepository authRepository;
 
-  LoginController({required this.firebaseAuthService, required this.authRepository});
-
+  LoginController(
+      {required this.firebaseAuthService, required this.authRepository});
 
   /// Steps:
   /// 1. Sign In With Google

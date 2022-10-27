@@ -24,9 +24,8 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GetBuilder<LoginController>(
-                initState: (_) {
-                  Get.find<LoginController>().getUser();
-                },
+                init: Get.find<LoginController>(),
+                initState: (state) => state.controller?.getUser(),
                 builder: (controller) {
                   UserData userData = controller.userData;
                   return Column(

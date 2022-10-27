@@ -38,9 +38,9 @@ dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.10.0
   flutter_svg: ^1.1.5
-  flutter_widget_from_html: ^0.8.5
   get: ^4.6.5
   google_sign_in: ^5.4.2
+  html: ^0.15.1
   percent_indicator: ^4.2.2
 
 dev_dependencies:

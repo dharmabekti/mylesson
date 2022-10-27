@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, sort_child_properties_last
-
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:html/parser.dart' show parse;
 import 'package:mylesson/core/app_colors.dart';
+import 'package:mylesson/core/custom_function.dart';
 import 'package:mylesson/data/model/question_list_response.dart';
 import 'package:mylesson/presentation/exercise/questions_form/exercise_questions_form_controller.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +100,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, height: 3),
                           ),
-                          HtmlWidget(activeQuestion.questionTitle ?? ''),
+                          Text(CustomFunction.removeTag(
+                              htmlString: activeQuestion.questionTitle ?? '')),
                           SizedBox(
                             height: 10,
                           ),
@@ -108,7 +109,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             child: RadioListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 0.0, vertical: 0.0),
-                              title: HtmlWidget(activeQuestion.optionA ?? ''),
+                              title: Text(CustomFunction.removeTag(
+                                  htmlString: activeQuestion.optionA ?? '')),
                               value: 'A',
                               groupValue: selectedAnswer,
                               onChanged: (val) {
@@ -122,7 +124,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             child: RadioListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 0.0, vertical: 0.0),
-                              title: HtmlWidget(activeQuestion.optionB ?? ''),
+                              title: Text(CustomFunction.removeTag(
+                                  htmlString: activeQuestion.optionB ?? '')),
                               value: 'B',
                               groupValue: selectedAnswer,
                               onChanged: (val) {
@@ -136,7 +139,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             child: RadioListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 0.0, vertical: 0.0),
-                              title: HtmlWidget(activeQuestion.optionC ?? ''),
+                              title: Text(CustomFunction.removeTag(
+                                  htmlString: activeQuestion.optionC ?? '')),
                               value: 'C',
                               groupValue: selectedAnswer,
                               onChanged: (val) {
@@ -150,7 +154,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             child: RadioListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 0.0, vertical: 0.0),
-                              title: HtmlWidget(activeQuestion.optionD ?? ''),
+                              title: Text(CustomFunction.removeTag(
+                                  htmlString: activeQuestion.optionD ?? '')),
                               value: 'D',
                               groupValue: selectedAnswer,
                               onChanged: (val) {
@@ -164,7 +169,8 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             child: RadioListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 0.0, vertical: 0.0),
-                              title: HtmlWidget(activeQuestion.optionE ?? ''),
+                              title: Text(CustomFunction.removeTag(
+                                  htmlString: activeQuestion.optionE ?? '')),
                               value: 'E',
                               groupValue: selectedAnswer,
                               onChanged: (val) {

@@ -37,18 +37,22 @@ class _BannerWidgetState extends State<BannerWidget> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: banners.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                      margin: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child:
-                          Image.network(banners[index].eventImage.toString()));
-                },
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: banners.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                        margin: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Image.network(
+                            banners[index].eventImage.toString()));
+                  },
+                ),
               ),
             ],
           );

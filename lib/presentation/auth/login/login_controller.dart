@@ -15,8 +15,6 @@ class LoginController extends GetxController {
   LoginController(
       {required this.firebaseAuthService, required this.authRepository});
 
-  UserData userData = UserData();
-
   /// Steps:
   /// 1. Sign In With Google
   /// 2. Get Email from UserCredential
@@ -54,6 +52,7 @@ class LoginController extends GetxController {
     }
   }
 
+  UserData userData = UserData();
   Future<void> getUser() async {
     String? email = FirebaseAuth.instance.currentUser?.email;
     if (email != null) {

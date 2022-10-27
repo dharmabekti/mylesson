@@ -33,26 +33,29 @@ class ExerciseListPage extends StatelessWidget {
               child: MainAppbar(title: controller.courseName)),
           body: Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: ListView.builder(
-                itemCount: exercises.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Get.toNamed(Routes.exerciseQuestionsForm,
-                        arguments: exercises[index].exerciseId),
-                    child: CustomWidget().cardMapel(
-                        exercises[index].exerciseTitle,
-                        "${exercises[index].jumlahDone ?? ''}/${exercises[index].jumlahSoal ?? ''} soal",
-                        null,
-                        exercises[index].icon),
-                  );
-                  // return ListTile(
-                  //   title: Text(exercises[index].exerciseTitle ?? ''),
-                  //   onTap: () {
-                  //     Get.toNamed(Routes.exerciseQuestionsForm,
-                  //         arguments: exercises[index].exerciseId);
-                  //   },
-                  // );
-                },
+              child: Container(
+                margin: EdgeInsets.only(left: 15, right: 15),
+                child: ListView.builder(
+                  itemCount: exercises.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => Get.toNamed(Routes.exerciseQuestionsForm,
+                          arguments: exercises[index].exerciseId),
+                      child: CustomWidget().cardMapel(
+                          exercises[index].exerciseTitle,
+                          "${exercises[index].jumlahDone ?? ''}/${exercises[index].jumlahSoal ?? ''} soal",
+                          null,
+                          exercises[index].icon),
+                    );
+                    // return ListTile(
+                    //   title: Text(exercises[index].exerciseTitle ?? ''),
+                    //   onTap: () {
+                    //     Get.toNamed(Routes.exerciseQuestionsForm,
+                    //         arguments: exercises[index].exerciseId);
+                    //   },
+                    // );
+                  },
+                ),
               )),
         );
       } else {

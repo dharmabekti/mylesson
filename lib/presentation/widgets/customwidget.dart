@@ -80,4 +80,16 @@ class CustomWidget {
       ),
     );
   }
+
+  // Button Container
+  Widget buttonContainer({required Widget child}) {
+    return Container(
+        margin: EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          border: Border.all(width: 1, color: AppColors.greyD6),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: child);
+  }
 }

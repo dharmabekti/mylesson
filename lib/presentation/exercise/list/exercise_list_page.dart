@@ -26,36 +26,45 @@ class ExerciseListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ExerciseListController>(builder: (controller) {
       List<ExerciseListData> exercises = controller.exerciseList;
-
-      return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
-            child: MainAppbar(title: controller.courseName)),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: ListView.builder(
-            itemCount: exercises.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => Get.toNamed(Routes.exerciseQuestionsForm,
-                    arguments: exercises[index].exerciseId),
-                child: CustomWidget().cardMapel(
-                    exercises[index].exerciseTitle,
-                    "${exercises[index].jumlahDone ?? ''}/${exercises[index].jumlahSoal ?? ''} soal",
-                    null,
-                    exercises[index].icon),
-              );
-              // return ListTile(
-              //   title: Text(exercises[index].exerciseTitle ?? ''),
-              //   onTap: () {
-              //     Get.toNamed(Routes.exerciseQuestionsForm,
-              //         arguments: exercises[index].exerciseId);
-              //   },
-              // );
-            },
-          ),
-        ),
-      );
+      if (exercises.isNotEmpty) {
+        return Scaffold(
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(80.0),
+              child: MainAppbar(title: controller.courseName)),
+          body: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: ListView.builder(
+                itemCount: exercises.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(Routes.exerciseQuestionsForm,
+                        arguments: exercises[index].exerciseId),
+                    child: CustomWidget().cardMapel(
+                        exercises[index].exerciseTitle,
+                        "${exercises[index].jumlahDone ?? ''}/${exercises[index].jumlahSoal ?? ''} soal",
+                        null,
+                        exercises[index].icon),
+                  );
+                  // return ListTile(
+                  //   title: Text(exercises[index].exerciseTitle ?? ''),
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.exerciseQuestionsForm,
+                  //         arguments: exercises[index].exerciseId);
+                  //   },
+                  // );
+                },
+              )),
+        );
+      } else {
+        return Scaffold(
+            appBar: PreferredSize(
+                preferredSize: Size.fromHeight(80.0),
+                child: MainAppbar(title: controller.courseName)),
+            body: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: CustomWidget().pageNotFound("Yah, Paket tidak tersedia",
+                    "Tenang, masih banyak yang bisa kamu pelajari.\ncari lagi yuk!")));
+      }
     });
   }
 }

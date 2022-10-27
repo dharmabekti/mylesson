@@ -4,7 +4,7 @@ import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/user_response.dart';
 import 'package:mylesson/presentation/auth/login/login_controller.dart';
-import 'package:mylesson/presentation/dashboard/home/banner_widget.dart';
+import 'package:mylesson/presentation/dashboard/home/home_banner_widget.dart';
 import 'package:mylesson/presentation/dashboard/home/home_courses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

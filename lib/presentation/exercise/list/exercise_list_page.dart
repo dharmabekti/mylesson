@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:mylesson/presentation/exercise/list/exercise_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mylesson/presentation/widgets/appbarWidget.dart';
+import 'package:mylesson/presentation/widgets/customwidget.dart';
 
 import '../../../data/model/exercise_list_response.dart';
 import '../../../routes/routes.dart';
@@ -24,20 +28,32 @@ class ExerciseListPage extends StatelessWidget {
       List<ExerciseListData> exercises = controller.exerciseList;
 
       return Scaffold(
-        appBar: AppBar(
-          title: Text(controller.courseName),
-        ),
-        body: ListView.builder(
-          itemCount: exercises.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(exercises[index].exerciseTitle ?? ''),
-              onTap: () {
-                Get.toNamed(Routes.exerciseQuestionsForm,
-                    arguments: exercises[index].exerciseId);
-              },
-            );
-          },
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(80.0),
+            child: MainAppbar(title: controller.courseName)),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: ListView.builder(
+            itemCount: exercises.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => Get.toNamed(Routes.exerciseQuestionsForm,
+                    arguments: exercises[index].exerciseId),
+                child: CustomWidget().cardMapel(
+                    exercises[index].exerciseTitle,
+                    "${exercises[index].jumlahDone ?? ''}/${exercises[index].jumlahSoal ?? ''} soal",
+                    null,
+                    exercises[index].icon),
+              );
+              // return ListTile(
+              //   title: Text(exercises[index].exerciseTitle ?? ''),
+              //   onTap: () {
+              //     Get.toNamed(Routes.exerciseQuestionsForm,
+              //         arguments: exercises[index].exerciseId);
+              //   },
+              // );
+            },
+          ),
         ),
       );
     });

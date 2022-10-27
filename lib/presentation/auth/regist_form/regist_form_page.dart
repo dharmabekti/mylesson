@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/core/validation.dart';
+import 'package:mylesson/presentation/widgets/appbarWidget.dart';
 
 import '../../widgets/form_field.dart';
 
@@ -20,21 +21,8 @@ class RegistFormPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.background,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0),
-          child: AppBar(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(30),
-              ),
-            ),
-            elevation: 0,
-            centerTitle: true,
-            title: Text(
-              "Yuk isi data diri",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+            preferredSize: Size.fromHeight(80.0),
+            child: MainAppbar(title: "Yuk isi data diri!")),
         body: Form(
           key: _formKey,
           child: ListView(

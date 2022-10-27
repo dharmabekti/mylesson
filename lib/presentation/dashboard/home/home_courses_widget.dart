@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:mylesson/core/values.dart';
 import 'package:mylesson/data/model/course_response.dart';
+import 'package:mylesson/presentation/widgets/customwidget.dart';
 import 'package:mylesson/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,43 +65,18 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                 itemBuilder: (context, index) {
                   var progress =
                       courses[index].jumlahDone! / courses[index].jumlahMateri!;
-                  return Card(
-                      child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: ListTile(
-                        onTap: () {
-                          Get.toNamed(Routes.exerciseList,
-                              arguments: ExerciseListPageArgs(
-                                courseId: courses[index].courseId!,
-                                courseName: courses[index].courseName ?? '',
-                              ));
-                        },
-                        leading: Image.asset(ImagesAssets.imgProfile),
-                        title: Text(courses[index].courseName ?? '',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                                "${courses[index].jumlahDone ?? ''}/${courses[index].jumlahMateri ?? ''} Paket latihan soal",
-                                style: TextStyle(
-                                  height: 2,
-                                  fontSize: 12,
-                                )),
-                            SizedBox(height: 10),
-                            LinearPercentIndicator(
-                              percent: progress,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                              barRadius: Radius.circular(10),
-                            ),
-                          ],
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(Routes.exerciseList,
+                        arguments: ExerciseListPageArgs(
+                          courseId: courses[index].courseId!,
+                          courseName: courses[index].courseName ?? '',
                         )),
-                  ));
+                    child: CustomWidget().cardMapel(
+                        courses[index].courseName,
+                        "${courses[index].jumlahDone ?? ''}/${courses[index].jumlahMateri ?? ''} Paket latihan soal",
+                        progress.toString(),
+                        null),
+                  );
                   // return ListTile(
                   //   title: Text(courses[index].courseName ?? ''),
                   //   onTap: () {

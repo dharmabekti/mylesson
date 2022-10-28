@@ -3,6 +3,8 @@
 import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/user_response.dart';
+import 'package:mylesson/data/repository/auth_repository.dart';
+import 'package:mylesson/data/services/firebase_auth_service.dart';
 import 'package:mylesson/presentation/dashboard/home/home_banner_widget.dart';
 import 'package:mylesson/presentation/dashboard/home/home_courses_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,9 @@ class HomePage extends StatelessWidget {
           alignment: Alignment.topCenter,
           padding: EdgeInsets.all(15),
           child: GetX<ProfileController>(
+              init: ProfileController(
+                  firebaseAuthService: Get.find<FirebaseAuthService>(),
+                  authRepository: Get.find<AuthRepository>()),
               initState: (_) => Get.find<ProfileController>().getProfile(),
               builder: (controller) {
                 UserData userData = controller.userData.value;

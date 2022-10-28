@@ -1,13 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/data/model/course_response.dart';
 import 'package:mylesson/presentation/course/course_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/presentation/widgets/appbarWidget.dart';
 import 'package:mylesson/presentation/widgets/customwidget.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../routes/routes.dart';
 import '../exercise/list/exercise_list_page.dart';

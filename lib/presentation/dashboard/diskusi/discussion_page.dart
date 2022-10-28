@@ -1,42 +1,32 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/presentation/dashboard/diskusi/discussion_controller.dart';
+import 'package:mylesson/presentation/widgets/appbarWidget.dart';
 import 'package:mylesson/presentation/widgets/chat_item_widget.dart';
 import 'package:mylesson/presentation/widgets/input_chat_widget.dart';
 
-/// C is a generic class can referred to other class based on assignment
-/// In this case other engineer can create new controller but must extends
-/// from [DiscussionController]. So, you will not double lifecycle execution.
-class DiscussionPage<C extends DiscussionController> extends GetView<C> {
-  static const routeName = '/discussion';
-
-  const DiscussionPage({super.key});
+class DiscussionPage extends StatelessWidget {
+  DiscussionPage({Key? key}) : super(key: key);
+  final chatC = Get.find<DiscussionController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: buildAppBar(context),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(80.0),
+          child: MainAppbar(
+            title: 'Diskusi Soal',
+          )),
       body: buildBody(context),
       bottomNavigationBar: buildBottom(context),
     );
   }
 
-  PreferredSizeWidget buildAppBar(BuildContext context) {
-    return AppBar(
-      title: const Text('Diskusi Soal'),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(16),
-          bottomRight: Radius.circular(16),
-        ),
-      ),
-    );
-  }
-
   Widget buildBody(BuildContext context) {
     return Obx(() {
-      if (controller.isLoadingMessages) {
+      if (chatC.isLoadingMessages) {
         return buildLoading(context);
       }
 
@@ -55,10 +45,10 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
   Widget buildData(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        final chat = controller.messages[index];
+        final chat = chatC.messages[index];
         return ChatItemWidget(chat: chat);
       },
-      itemCount: controller.messages.length,
+      itemCount: chatC.messages.length,
       reverse: true,
     );
   }
@@ -80,15 +70,15 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
   }
 
   void onTapCamera(BuildContext context) {
-    controller.openCamera();
+    chatC.openCamera();
   }
 
   void onSend(BuildContext context) {
-    final fileName = controller.selectedFile?.name;
+    final fileName = chatC.selectedFile?.name;
     debugPrint(fileName);
   }
 
   void onTapAdd(BuildContext context) {
-    debugPrint(controller.messageLength.toString());
+    debugPrint(chatC.messageLength.toString());
   }
 }

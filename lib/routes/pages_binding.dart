@@ -60,6 +60,7 @@ class Pages {
     GetPage(
       name: Routes.editProfile,
       page: () => EditProfilePage(),
+      binding: DashboardBinding(),
       arguments: String,
     ),
   ];

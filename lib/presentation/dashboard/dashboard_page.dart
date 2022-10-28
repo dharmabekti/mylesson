@@ -41,7 +41,7 @@ class DashboardPage extends GetView<DashboardController> {
 
   List<Widget> _bodyList() => [
         const HomePage(),
-        const DiscussionPage(),
+        DiscussionPage(),
         const ProfilePage(),
       ];
 }

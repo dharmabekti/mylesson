@@ -30,7 +30,7 @@ class DiscussionController extends GetxController {
     _isLoadingMessages.value = true;
     final values = await _chatRepository.messages;
     await Future.delayed(const Duration(seconds: 2));
-    // _messages.value = values;
+    _messages.value = values;
     _isLoadingMessages.value = false;
   }
 

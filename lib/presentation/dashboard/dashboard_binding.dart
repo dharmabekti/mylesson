@@ -1,8 +1,10 @@
 import 'package:mylesson/data/repository/auth_repository.dart';
 import 'package:mylesson/data/repository/banner_repository.dart';
+import 'package:mylesson/data/repository/chat_repository.dart';
 import 'package:mylesson/presentation/auth/login/login_controller.dart';
 import 'package:mylesson/presentation/dashboard/dashboard_controller.dart';
 import 'package:get/get.dart';
+import 'package:mylesson/presentation/dashboard/diskusi/discussion_controller.dart';
 import 'package:mylesson/presentation/dashboard/profile/profile_controller.dart';
 
 import '../../data/repository/course_repository.dart';
@@ -25,5 +27,7 @@ class DashboardBinding implements Bindings {
     Get.lazyPut(() => ProfileController(
         firebaseAuthService: Get.find<FirebaseAuthService>(),
         authRepository: Get.find<AuthRepository>()));
+    Get.lazyPut(
+        () => DiscussionController(chatRepository: Get.find<ChatRepository>()));
   }
 }

@@ -43,6 +43,8 @@ dependencies:
   get: ^4.6.5
   google_sign_in: ^5.4.2
   html: ^0.15.1
+  image_picker: ^0.8.6
+  intl: ^0.17.0
   percent_indicator: ^4.2.2
 
 dev_dependencies:

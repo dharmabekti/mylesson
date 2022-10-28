@@ -1,6 +1,7 @@
 import 'package:mylesson/presentation/dashboard/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mylesson/presentation/dashboard/diskusi/discussion_page.dart';
 
 import 'home/home_page.dart';
 import 'profile/profile_page.dart';
@@ -40,7 +41,7 @@ class DashboardPage extends GetView<DashboardController> {
 
   List<Widget> _bodyList() => [
         const HomePage(),
-        const Placeholder(child: Text('Diskusi Soal')),
+        const DiscussionPage(),
         const ProfilePage(),
       ];
 }

@@ -1,4 +1,5 @@
 import "package:get/get_navigation/src/routes/get_route.dart";
+import 'package:mylesson/presentation/dashboard/profile/edit_profile_page.dart';
 
 import '../presentation/auth/regist_form/regist_form_binding.dart';
 import '../presentation/auth/regist_form/regist_form_page.dart';
@@ -54,6 +55,11 @@ class Pages {
     GetPage(
       name: Routes.exerciseResult,
       page: () => const ExerciseResultPage(),
+      arguments: String,
+    ),
+    GetPage(
+      name: Routes.editProfile,
+      page: () => EditProfilePage(),
       arguments: String,
     ),
   ];

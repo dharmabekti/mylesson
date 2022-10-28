@@ -7,4 +7,5 @@ class Routes {
   static const exerciseList = '$courseList/exercises';
   static const exerciseQuestionsForm = '$exerciseList/questions';
   static const exerciseResult = '$exerciseList/result';
+  static const editProfile = '/profile/edit';
 }

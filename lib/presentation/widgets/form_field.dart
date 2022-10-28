@@ -6,7 +6,8 @@ import '../../core/app_colors.dart';
 
 // FormTextFieldWidget
 class FormTextFieldWidget extends StatelessWidget {
-  final String title, hintText, validation;
+  final String title, hintText;
+  final String? validation;
   final TextEditingController controller;
 
   const FormTextFieldWidget(
@@ -14,7 +15,7 @@ class FormTextFieldWidget extends StatelessWidget {
       required this.title,
       required this.controller,
       required this.hintText,
-      required this.validation})
+      this.validation})
       : super(key: key);
 
   @override

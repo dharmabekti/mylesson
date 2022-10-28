@@ -3,11 +3,11 @@
 import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/user_response.dart';
-import 'package:mylesson/presentation/auth/login/login_controller.dart';
 import 'package:mylesson/presentation/dashboard/home/home_banner_widget.dart';
 import 'package:mylesson/presentation/dashboard/home/home_courses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mylesson/presentation/dashboard/profile/profile_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,11 +19,10 @@ class HomePage extends StatelessWidget {
         Container(
           alignment: Alignment.topCenter,
           padding: EdgeInsets.all(15),
-          child: GetBuilder<LoginController>(
-              // init: LoginController(),
-              initState: (_) => Get.find<LoginController>().getUser(),
+          child: GetX<ProfileController>(
+              initState: (_) => Get.find<ProfileController>().getProfile(),
               builder: (controller) {
-                UserData userData = controller.userData;
+                UserData userData = controller.userData.value;
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

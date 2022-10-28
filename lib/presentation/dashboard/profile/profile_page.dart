@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/user_response.dart';
-import 'package:mylesson/presentation/auth/login/login_controller.dart';
+import 'package:mylesson/presentation/dashboard/profile/profile_controller.dart';
+import 'package:mylesson/routes/routes.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   void redirectToEditPage() {
-    // Get.toNamed(EditProfilePage.routeName);
+    Get.toNamed(Routes.editProfile);
   }
 
   PreferredSizeWidget buildBottomAppBar(BuildContext context) {
@@ -57,10 +58,10 @@ class ProfilePage extends StatelessWidget {
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: GetBuilder<LoginController>(
-              initState: (_) => Get.find<LoginController>().getUser(),
+          child: GetX<ProfileController>(
+              initState: (_) => Get.find<ProfileController>().getProfile(),
               builder: (controller) {
-                UserData userData = controller.userData;
+                UserData userData = controller.userData.value;
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -112,10 +113,10 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return GetBuilder<LoginController>(
-      initState: (_) => Get.find<LoginController>().getUser(),
+    return GetX<ProfileController>(
+      initState: (_) => Get.find<ProfileController>().getProfile(),
       builder: (controller) {
-        UserData userData = controller.userData;
+        UserData userData = controller.userData.value;
         return ListView(
           children: [
             Card(

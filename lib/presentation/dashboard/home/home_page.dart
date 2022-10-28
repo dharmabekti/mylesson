@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.all(15),
           child: GetBuilder<LoginController>(
               // init: LoginController(),
-              initState: (state) => Get.find<LoginController>().getUser(),
+              initState: (_) => Get.find<LoginController>().getUser(),
               builder: (controller) {
                 UserData userData = controller.userData;
                 return Row(

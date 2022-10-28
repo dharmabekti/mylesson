@@ -30,6 +30,7 @@ class UserData {
   String? userAsalSekolah;
   String? dateCreate;
   String? jenjang;
+  String? kelas;
   String? userGender;
   String? userStatus;
 
@@ -52,6 +53,7 @@ class UserData {
     userAsalSekolah = json['user_asal_sekolah'];
     dateCreate = json['date_create'];
     jenjang = json['jenjang'];
+    kelas = json['kelas'];
     userGender = json['user_gender'];
     userStatus = json['user_status'];
   }

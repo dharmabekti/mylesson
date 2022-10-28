@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
+import 'package:mylesson/data/model/user_response.dart';
+import 'package:mylesson/presentation/auth/login/login_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -9,13 +13,20 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(150.0), child: buildAppBar(context)),
       body: buildBody(context),
     );
   }
 
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(20),
+        ),
+      ),
+      elevation: 0,
       title: const Text('Akun Saya'),
       backgroundColor: const Color(0xff3A7FD5),
       centerTitle: true,
@@ -40,122 +51,135 @@ class ProfilePage extends StatelessWidget {
 
   PreferredSizeWidget buildBottomAppBar(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size(Get.width, 60),
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Fajrin Arrahman',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: AppColors.white,
+        preferredSize: Size(Get.width, 60),
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: GetBuilder<LoginController>(
+              initState: (_) => Get.find<LoginController>().getUser(),
+              builder: (controller) {
+                UserData userData = controller.userData;
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              userData.userName.toString(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              userData.userAsalSekolah.toString(),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: AppColors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      'SMAN 1 Kediri',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.white,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(36),
+                      child: ExtendedImage.network(
+                        userData.userFoto.toString(),
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                        cache: true,
                       ),
                     ),
+                    const SizedBox(width: 16),
                   ],
-                ),
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(36),
-              child: ExtendedImage.network(
-                'https://cdn1-production-images-kly.akamaized.net/H6frj65JGbLKYO7MVWUlp3tD8tc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2117358/original/087611600_1524566686-2._Steve_Jobs_-_JUSTIN_SULLIVAN__GETTY_IMAGES_NORTH_AMERICA__AFP.jpg',
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-                cache: true,
-              ),
-            ),
-            const SizedBox(width: 16),
-          ],
-        ),
-      ),
-    );
+                );
+              }),
+        ));
   }
 
   Widget buildBody(BuildContext context) {
-    return ListView(
-      children: [
-        Card(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 16,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                  top: 16,
-                  bottom: 8,
-                ),
-                child: Text(
-                  'Identitas Diri',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
+    return GetBuilder<LoginController>(
+      initState: (_) => Get.find<LoginController>().getUser(),
+      builder: (controller) {
+        UserData userData = controller.userData;
+        return ListView(
+          children: [
+            Card(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 16,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 16,
+                      bottom: 8,
+                    ),
+                    child: Text(
+                      'Identitas Diri',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  buildContentProfile(
+                    context: context,
+                    title: 'Nama Lengkap',
+                    value: userData.userName.toString(),
+                  ),
+                  buildContentProfile(
+                    context: context,
+                    title: 'Email',
+                    value: userData.userEmail.toString(),
+                  ),
+                  buildContentProfile(
+                    context: context,
+                    title: 'Jenis Kelamin',
+                    value: userData.userGender.toString(),
+                  ),
+                  buildContentProfile(
+                    context: context,
+                    title: 'Kelas',
+                    value: userData.kelas.toString(),
+                  ),
+                  buildContentProfile(
+                    context: context,
+                    title: 'Sekolah',
+                    value: userData.userAsalSekolah.toString(),
+                  ),
+                  const SizedBox(height: 16),
+                ],
               ),
-              const SizedBox(
-                height: 6,
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Nama Lengkap',
-                value: 'Muhammad Ali Topan',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Email',
-                value: 'helloaltop@gmail.com',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Jenis Kelamin',
-                value: 'Laki - laki',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Kelas',
-                value: 'XII-IPA',
-              ),
-              buildContentProfile(
-                context: context,
-                title: 'Sekolah',
-                value: 'SMAN 1 Kediri',
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        ),
-        buildLogoutSection(
-          context: context,
-          onTap: () => onLogoutPressed(),
-        ),
-      ],
+            ),
+            buildLogoutSection(
+              context: context,
+              onTap: () => onLogoutPressed(),
+            ),
+          ],
+        );
+      },
     );
   }
 

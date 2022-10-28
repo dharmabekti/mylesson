@@ -42,6 +42,7 @@ class UserData {
       this.userAsalSekolah,
       this.dateCreate,
       this.jenjang,
+      this.kelas,
       this.userGender,
       this.userStatus});
 
@@ -66,6 +67,7 @@ class UserData {
     data['user_foto'] = userFoto;
     data['user_asal_sekolah'] = userAsalSekolah;
     data['date_create'] = dateCreate;
+    data['kelas'] = kelas;
     data['jenjang'] = jenjang;
     data['user_gender'] = userGender;
     data['user_status'] = userStatus;

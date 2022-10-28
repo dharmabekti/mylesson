@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
+import 'package:mylesson/data/model/register_user_request.dart';
 import 'package:mylesson/data/model/user_response.dart';
 import 'package:mylesson/presentation/dashboard/profile/profile_controller.dart';
 import 'package:mylesson/presentation/widgets/appbarWidget.dart';
@@ -18,9 +19,18 @@ class EditProfilePage<C extends ProfileController> extends GetView<C> {
   TextEditingController sekolahCtrl = TextEditingController();
   TextEditingController kelasCtrl = TextEditingController();
   TextEditingController jenjangCtrl = TextEditingController();
-  TextEditingController genderCtrl = TextEditingController();
   TextEditingController fotoCtrl = TextEditingController();
-  var sessionManager = SessionManager();
+  String? _gender;
+
+  initialValue(UserData userData) {
+    namaCtrl = TextEditingController(text: userData.userName ?? '');
+    emailCtrl = TextEditingController(text: userData.userEmail ?? '');
+    sekolahCtrl = TextEditingController(text: userData.userAsalSekolah ?? '');
+    kelasCtrl = TextEditingController(text: userData.kelas ?? '');
+    jenjangCtrl = TextEditingController(text: userData.jenjang ?? '');
+    fotoCtrl = TextEditingController(text: userData.userFoto ?? '');
+    _gender = userData.userGender;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +49,16 @@ class EditProfilePage<C extends ProfileController> extends GetView<C> {
                     borderRadius: BorderRadius.circular(32.0)),
                 minimumSize: Size(100, 40),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.find<ProfileController>().submitAnswers(UserBody(
+                    fullName: namaCtrl.text,
+                    email: emailCtrl.text,
+                    schoolName: sekolahCtrl.text,
+                    schoolLevel: jenjangCtrl.text,
+                    schoolGrade: kelasCtrl.text,
+                    photoUrl: fotoCtrl.text,
+                    gender: _gender.toString()));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 // ignore: prefer_const_literals_to_create_immutables
@@ -65,70 +84,78 @@ class EditProfilePage<C extends ProfileController> extends GetView<C> {
     // return FormEditProfilePage<C>();
     return Form(
       key: _formKey,
-      child: ListView(
-        shrinkWrap: true,
-        padding: EdgeInsets.all(10),
-        children: <Widget>[
-          FormTextFieldWidget(
-            title: "Nama Lengkap",
-            controller: namaCtrl,
-            hintText: "Masukkan Nama Lengkap",
-            validation: 'required',
-          ),
-          FormTextFieldWidget(
-            title: "Email",
-            controller: emailCtrl,
-            hintText: "Masukkan Email",
-            validation: 'required',
-          ),
-          Padding(
-              padding: EdgeInsets.only(top: 10.0),
-              child: DropdownButtonFormField(
-                value: "Laki-laki",
-                // ignore: prefer_const_literals_to_create_immutables
-                items: [
-                  DropdownMenuItem(
-                      child: Text("Laki-laki"), value: "Laki-laki"),
-                  DropdownMenuItem(
-                    child: Text("Perempuan"),
-                    value: "Perempuan",
-                  )
-                ],
-                onChanged: (value) {
-                  print("You selected $value");
-                },
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppColors.white,
-                    labelText: "Jenis Kelamin",
-                    hintStyle: TextStyle(color: Colors.grey.withOpacity(0.3)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0))),
-              )),
-          FormTextFieldWidget(
-            title: "Jenjang",
-            controller: jenjangCtrl,
-            hintText: "Masukkan Jenang Pendidikan",
-            validation: 'required',
-          ),
-          FormTextFieldWidget(
-            title: "Kelas",
-            controller: sekolahCtrl,
-            hintText: "Masukkan Kelas",
-            validation: 'required',
-          ),
-          FormTextFieldWidget(
-            title: "Nama Sekolah",
-            controller: sekolahCtrl,
-            hintText: "Masukkan Nama Sekolah",
-            validation: 'required',
-          ),
-          FormTextFieldWidget(
-            title: "URL Profil",
-            controller: fotoCtrl,
-            hintText: "Masukkan Url Foto Profil",
-          )
-        ],
+      child: GetX<ProfileController>(
+        initState: (_) => Get.find<ProfileController>().getProfile(),
+        builder: (controller) {
+          UserData userData = controller.userData.value;
+          initialValue(userData);
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(10),
+            children: <Widget>[
+              FormTextFieldWidget(
+                title: "Nama Lengkap",
+                controller: namaCtrl,
+                hintText: "Masukkan Nama Lengkap",
+                validation: 'required',
+              ),
+              FormTextFieldWidget(
+                title: "Email",
+                controller: emailCtrl,
+                hintText: "Masukkan Email",
+                validation: 'required',
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: DropdownButtonFormField(
+                    value: _gender,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    items: [
+                      DropdownMenuItem(
+                          child: Text("Laki-laki"), value: "Laki-laki"),
+                      DropdownMenuItem(
+                        child: Text("Perempuan"),
+                        value: "Perempuan",
+                      )
+                    ],
+                    onChanged: (value) {
+                      _gender = value;
+                    },
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: AppColors.white,
+                        labelText: "Jenis Kelamin",
+                        hintStyle:
+                            TextStyle(color: Colors.grey.withOpacity(0.3)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0))),
+                  )),
+              FormTextFieldWidget(
+                title: "Jenjang",
+                controller: jenjangCtrl,
+                hintText: "Masukkan Jenang Pendidikan",
+                validation: 'required',
+              ),
+              FormTextFieldWidget(
+                title: "Kelas",
+                controller: kelasCtrl,
+                hintText: "Masukkan Kelas",
+                validation: 'required',
+              ),
+              FormTextFieldWidget(
+                title: "Nama Sekolah",
+                controller: sekolahCtrl,
+                hintText: "Masukkan Nama Sekolah",
+                validation: 'required',
+              ),
+              FormTextFieldWidget(
+                title: "URL Profil",
+                controller: fotoCtrl,
+                hintText: "Masukkan Url Foto Profil",
+              )
+            ],
+          );
+        },
       ),
     );
   }

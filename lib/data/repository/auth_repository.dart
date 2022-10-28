@@ -9,6 +9,7 @@ abstract class AuthRepository {
   Future<UserData?> getUserByEmail({required String email});
 
   Future<bool> registerUser({required UserBody userBody});
+  Future<bool> updateUser({required UserBody userBody});
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -42,6 +43,32 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e, stackTrace) {
       if (kDebugMode) {
         print('Err registerUser: $e, $stackTrace');
+      }
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> updateUser({required UserBody userBody}) async {
+    try {
+      await dioClient.post(Urls.userUpdate, body: userBody.toMap());
+      // final result = await dioClient.post(
+      //   Urls.userUpdate,
+      //   body: {
+      //     "user_email": userData.userEmail,
+      //     "nama_lengkap": userData.userName,
+      //     "nama_sekolah": userData.userAsalSekolah,
+      //     "kelas": userData.kelas,
+      //     "gender": userData.userGender,
+      //     "jenjang": userData.jenjang,
+      //     "foto": userData.userFoto,
+      //   },
+      // );
+
+      return true;
+    } catch (e, stackTrace) {
+      if (kDebugMode) {
+        print('Err submitAnswers: $e, $stackTrace');
       }
       return false;
     }

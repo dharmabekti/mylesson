@@ -19,39 +19,44 @@ class HomePage extends StatelessWidget {
         Container(
           alignment: Alignment.topCenter,
           padding: EdgeInsets.all(15),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GetBuilder<LoginController>(
-                // init: Get.find<LoginController>(),
-                initState: (state) => Get.find<LoginController>().getUser(),
-                builder: (controller) {
-                  UserData userData = controller.userData;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hai, ${userData.userName}',
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Selamat Datang',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
-                  );
-                },
-              ),
-              Container(
-                  height: 50,
-                  width: 50,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                  child: Image.asset(ImagesAssets.imgProfile)),
-            ],
-          ),
+          child: GetBuilder<LoginController>(
+              // init: LoginController(),
+              initState: (state) => Get.find<LoginController>().getUser(),
+              builder: (controller) {
+                UserData userData = controller.userData;
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hai, ${userData.userName}',
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Selamat Datang',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        height: 50,
+                        width: 50,
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                        child: userData.userFoto == null
+                            ? Image.asset(ImagesAssets.imgProfile)
+                            : CircleAvatar(
+                                child: ClipOval(
+                                    child: Image.network(
+                                        userData.userFoto.toString())),
+                              )),
+                  ],
+                );
+              }),
         ),
         Container(
           height: 130,

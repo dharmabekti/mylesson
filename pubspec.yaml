@@ -37,6 +37,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.10.0
+  flutter_session_manager: ^1.0.3
   flutter_svg: ^1.1.5
   get: ^4.6.5
   google_sign_in: ^5.4.2

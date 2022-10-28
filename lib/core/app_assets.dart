@@ -9,4 +9,5 @@ class ImagesAssets {
   static const String imgSingleBanner = 'assets/images/single-banner.png';
   static const String imgIllustrationNotFound =
       'assets/images/img_not_found.png';
+  static const String imgTrophy = 'assets/images/trophy.png';
 }

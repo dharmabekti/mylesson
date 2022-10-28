@@ -47,8 +47,10 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 3.0),
                                     child: ElevatedButton(
-                                      onPressed: () => controller
-                                          .navigateToQuestionIndex(index),
+                                      onPressed: () {
+                                        // controller
+                                        //     .navigateToQuestionIndex(index);
+                                      },
                                       child: Text(
                                         '${index + 1}',
                                         style: TextStyle(
@@ -58,18 +60,22 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                                                   ? FontWeight.w800
                                                   : FontWeight.w400,
                                           color: index == activeQuestionIndex
-                                              ? Colors.blue
-                                              : Colors.black,
+                                              ? AppColors.white
+                                              : AppColors.black,
                                         ),
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                          shape: CircleBorder(
-                                              side: BorderSide(
-                                            width: 1.0,
-                                            color: AppColors.primary,
-                                          )),
-                                          padding: EdgeInsets.all(1),
-                                          backgroundColor: AppColors.white),
+                                        shape: CircleBorder(
+                                            side: BorderSide(
+                                          width: 1.0,
+                                          color: AppColors.primary,
+                                        )),
+                                        padding: EdgeInsets.all(1),
+                                        backgroundColor:
+                                            index <= activeQuestionIndex
+                                                ? AppColors.primary
+                                                : AppColors.white,
+                                      ),
                                     ),
                                   ),
                                 )
@@ -116,7 +122,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                               onChanged: (val) {
                                 controller.updateAnswerToQuestion(
                                     questionId: activeQuestionId ?? '',
-                                    answer: 'A');
+                                    answer: val.toString());
                               },
                             ),
                           ),
@@ -131,7 +137,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                               onChanged: (val) {
                                 controller.updateAnswerToQuestion(
                                     questionId: activeQuestionId ?? '',
-                                    answer: 'B');
+                                    answer: val.toString());
                               },
                             ),
                           ),
@@ -146,7 +152,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                               onChanged: (val) {
                                 controller.updateAnswerToQuestion(
                                     questionId: activeQuestionId ?? '',
-                                    answer: 'C');
+                                    answer: val.toString());
                               },
                             ),
                           ),
@@ -161,7 +167,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                               onChanged: (val) {
                                 controller.updateAnswerToQuestion(
                                     questionId: activeQuestionId ?? '',
-                                    answer: 'D');
+                                    answer: val.toString());
                               },
                             ),
                           ),
@@ -176,27 +182,55 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                               onChanged: (val) {
                                 controller.updateAnswerToQuestion(
                                     questionId: activeQuestionId ?? '',
-                                    answer: 'E');
+                                    answer: val.toString());
                               },
                             ),
                           ),
                         ],
                       ),
-                      if (activeQuestionIndex < 10)
-                        ElevatedButton(
-                          onPressed: () {
-                            controller.navigateToQuestionIndex(
-                                activeQuestionIndex + 1);
-                          },
-                          child: const Text('Selanjutnya'),
-                        )
-                      else
-                        ElevatedButton(
-                          onPressed: () {
-                            controller.submitAnswers();
-                          },
-                          child: const Text('Kumpulin'),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              controller.navigateToQuestionIndex(
+                                  activeQuestionIndex - 1);
+                            },
+                            child: Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                Icon(Icons.navigate_before),
+                                Text('Sebelumnya'),
+                              ],
+                            ),
+                          ),
+                          activeQuestionIndex < (questions.length - 1)
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    controller.navigateToQuestionIndex(
+                                        activeQuestionIndex + 1);
+                                  },
+                                  child: Row(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    children: [
+                                      Text('Selanjutnya'),
+                                      Icon(Icons.navigate_next),
+                                    ],
+                                  ))
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    controller.submitAnswers();
+                                  },
+                                  child: Row(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    children: [
+                                      Icon(Icons.check),
+                                      Text('Kumpulkan'),
+                                    ],
+                                  ),
+                                ),
+                        ],
+                      )
                     ],
                   ),
                 ),

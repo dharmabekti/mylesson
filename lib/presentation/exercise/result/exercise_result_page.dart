@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:mylesson/core/app_assets.dart';
 import '../../../core/app_colors.dart';
 import 'exercise_result_controller.dart';
 
@@ -9,8 +9,9 @@ class ExerciseResultPage extends GetView<ExerciseResultController> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primary,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -40,22 +41,44 @@ class ExerciseResultPage extends GetView<ExerciseResultController> {
                 'Selamat',
                 style: TextStyle(
                   color: AppColors.white,
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
               ),
+              const Text(
+                'Kamu telah menyelesaikan Kuiz ini',
+                style: TextStyle(
+                  color: AppColors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Image.asset(
+                ImagesAssets.imgTrophy,
+                height: 255,
+              ),
               const SizedBox(height: 8),
-              Text(
-                'Nilai Kamu: ${controller.resultScore}',
-                style: const TextStyle(
+              const Text(
+                'Nilai Kamu:',
+                style: TextStyle(
                   color: AppColors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 10),
+              Text(
+                args.toString(),
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontSize: 50,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),

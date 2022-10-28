@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/user_response.dart';
@@ -37,6 +38,8 @@ class LoginController extends GetxController {
       if (userData != null) {
         print(userData.iduser);
         if (userData.iduser.toString() != "0") {
+          var sessionManager = SessionManager();
+          await sessionManager.set("userData", userData);
           // User is Registered
           Get.offAllNamed(Routes.dashboard);
         } else {
@@ -58,6 +61,9 @@ class LoginController extends GetxController {
     if (email != null) {
       UserData? result = await authRepository.getUserByEmail(email: email);
       userData = result!;
+      var sessionManager = SessionManager();
+      await sessionManager.set("userData", userData);
+      await sessionManager.set("jenjang", userData.jenjang);
       update();
     }
   }

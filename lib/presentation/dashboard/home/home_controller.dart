@@ -1,3 +1,4 @@
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:mylesson/data/model/banner_response.dart';
 import 'package:mylesson/data/repository/banner_repository.dart';
 import 'package:mylesson/data/repository/course_repository.dart';
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
 
   Future<void> getCourses() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
+    var user = await SessionManager().get("userData");
     if (email != null) {
       List<CourseData> result =
           await courseRepository.getCourses(majorName: majorName, email: email);

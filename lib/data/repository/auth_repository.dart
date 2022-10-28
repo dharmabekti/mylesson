@@ -5,10 +5,13 @@ import '../model/user_response.dart';
 
 import '../services/dio_client.dart';
 
-abstract class AuthRepository {
+class AuthRepository {
   Future<UserData?> getUserByEmail({required String email});
 
   Future<bool> registerUser({required UserBody userBody});
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 class AuthRepositoryImpl implements AuthRepository {

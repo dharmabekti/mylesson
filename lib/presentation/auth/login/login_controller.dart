@@ -37,7 +37,6 @@ class LoginController extends GetxController {
     if (email != null) {
       UserData? userData = await authRepository.getUserByEmail(email: email);
       if (userData != null) {
-        print(userData.iduser);
         if (userData.iduser.toString() != "0") {
           var sessionManager = SessionManager();
           await sessionManager.set("userData", userData);

@@ -52,19 +52,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> updateUser({required UserBody userBody}) async {
     try {
       await dioClient.post(Urls.userUpdate, body: userBody.toMap());
-      // final result = await dioClient.post(
-      //   Urls.userUpdate,
-      //   body: {
-      //     "user_email": userData.userEmail,
-      //     "nama_lengkap": userData.userName,
-      //     "nama_sekolah": userData.userAsalSekolah,
-      //     "kelas": userData.kelas,
-      //     "gender": userData.userGender,
-      //     "jenjang": userData.jenjang,
-      //     "foto": userData.userFoto,
-      //   },
-      // );
-
       return true;
     } catch (e, stackTrace) {
       if (kDebugMode) {

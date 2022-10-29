@@ -50,7 +50,7 @@ class EditProfilePage<C extends ProfileController> extends GetView<C> {
                 minimumSize: Size(100, 40),
               ),
               onPressed: () {
-                Get.find<ProfileController>().submitAnswers(UserBody(
+                Get.find<ProfileController>().updateProfil(UserBody(
                     fullName: namaCtrl.text,
                     email: emailCtrl.text,
                     schoolName: sekolahCtrl.text,

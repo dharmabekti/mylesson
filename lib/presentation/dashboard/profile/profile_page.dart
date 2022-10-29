@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/user_response.dart';
+import 'package:mylesson/presentation/auth/login/login_controller.dart';
 import 'package:mylesson/presentation/dashboard/profile/profile_controller.dart';
 import 'package:mylesson/routes/routes.dart';
 
@@ -248,5 +249,5 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  void onLogoutPressed() => debugPrint('onLogoutPressed');
+  void onLogoutPressed() => Get.find<LoginController>().signOut();
 }

@@ -28,7 +28,7 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> submitAnswers(UserBody userBody) async {
+  Future<void> updateProfil(UserBody userBody) async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
       submitLoading = true;

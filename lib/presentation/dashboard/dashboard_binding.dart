@@ -34,6 +34,9 @@ class DashboardBinding implements Bindings {
     Get.lazyPut(() => ProfileController(
         firebaseAuthService: Get.find<FirebaseAuthService>(),
         authRepository: Get.find<AuthRepository>()));
+    Get.put(() => ProfileController(
+        firebaseAuthService: Get.find<FirebaseAuthService>(),
+        authRepository: Get.find<AuthRepository>()));
     Get.lazyPut(
         () => DiscussionController(chatRepository: Get.find<ChatRepository>()));
     Get.lazyPut(() => LoginController(

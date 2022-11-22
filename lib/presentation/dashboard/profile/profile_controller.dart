@@ -37,7 +37,7 @@ class ProfileController extends GetxController {
       bool submitResult = await authRepository.updateUser(userBody: userBody);
 
       if (submitResult == true) {
-        Get.offNamed(Routes.dashboard);
+        Get.offAllNamed(Routes.dashboard);
       }
       submitLoading = false;
       update();

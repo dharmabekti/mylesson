@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:mylesson/core/values.dart';
 import 'package:mylesson/data/model/banner_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

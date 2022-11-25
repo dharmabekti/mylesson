@@ -1,5 +1,4 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors, sort_child_properties_last
-import 'package:html/parser.dart' show parse;
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/core/custom_function.dart';
 import 'package:mylesson/data/model/question_list_response.dart';

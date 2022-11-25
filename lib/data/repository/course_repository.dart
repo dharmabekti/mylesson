@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:mylesson/core/urls.dart';
 import 'package:mylesson/data/model/course_response.dart';
 import 'package:mylesson/data/model/exercise_list_response.dart';

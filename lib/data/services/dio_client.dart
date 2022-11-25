@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio_logger/dio_logger.dart';
-import 'package:meta/meta.dart';
 import 'package:mylesson/core/urls.dart';
 
 abstract class DioClient {

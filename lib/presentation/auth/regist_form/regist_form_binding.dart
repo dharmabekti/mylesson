@@ -4,8 +4,6 @@ import 'package:mylesson/presentation/auth/regist_form/regist_form_controller.da
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 
-import '../../../data/services/firebase_auth_service.dart';
-
 class RegistFormBinding implements Bindings {
   @override
   void dependencies() {

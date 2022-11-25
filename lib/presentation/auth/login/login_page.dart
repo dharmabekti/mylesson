@@ -1,7 +1,6 @@
 import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/presentation/auth/login/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_colors.dart';
@@ -17,12 +16,12 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Wrap(
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.center,
-            spacing: 8.0, // gap between adjacent chips
-            runSpacing: 4.0, // gap between lines
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // direction: Axis.horizontal,
+            // alignment: WrapAlignment.center,
+            // spacing: 8.0, // gap between adjacent chips
+            // runSpacing: 4.0, // gap between lines
             children: [
               const Text(
                 'Login',
@@ -33,11 +32,10 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 36),
-              SvgPicture.asset(
+              Image.asset(
                 ImagesAssets.imageIllustrationLoginSvg,
                 height: 255,
               ),
-              const SizedBox(height: 60),
               const Text(
                 'Selamat Datang',
                 style: TextStyle(
@@ -57,7 +55,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Expanded(child: SizedBox()),
+              const SizedBox(height: 10),
               SocialLoginButton(
                 text: 'Masuk dengan Google',
                 iconAsset: ImagesAssets.iconGooglePng,

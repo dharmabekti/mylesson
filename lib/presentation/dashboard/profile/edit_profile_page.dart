@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable, sort_child_properties_last
-
 import 'package:flutter/material.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:mylesson/data/model/register_user_request.dart';

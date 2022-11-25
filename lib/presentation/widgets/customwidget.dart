@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_question_mark
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mylesson/core/app_assets.dart';
 import 'package:mylesson/core/app_colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';

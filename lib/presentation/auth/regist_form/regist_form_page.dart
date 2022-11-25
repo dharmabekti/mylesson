@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mylesson/core/app_colors.dart';
-import 'package:mylesson/core/validation.dart';
 import 'package:mylesson/data/model/register_user_request.dart';
 import 'package:mylesson/presentation/auth/regist_form/regist_form_controller.dart';
 import 'package:mylesson/presentation/widgets/appbarWidget.dart';
